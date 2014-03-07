@@ -1,0 +1,300 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: mariani\n"
+"POT-Creation-Date: 2014-03-03 10:53+0700\n"
+"PO-Revision-Date: 2014-03-03 10:54+0700\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: id\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.4\n"
+"X-Poedit-KeywordsList: __;_e;esc_attr__;esc_attr_e;esc_html__;esc_html_e;_x;"
+"_ex;esc_attr_x;esc_html_x;_n;_nx;_n_noop;_nx_noop\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: ../.\n"
+
+#: .././404.php:24 .././header.php:27
+#, php-format
+msgid "Page %s"
+msgstr ""
+
+#: .././404.php:49
+msgid "Sorry, the page you’re looking for doesn’t exists."
+msgstr ""
+
+#: .././404.php:52
+msgid "Go Back to"
+msgstr ""
+
+#: .././404.php:54 .././404.php:55
+msgid "Home Page"
+msgstr ""
+
+#: .././archive.php:13
+msgid "archive"
+msgstr ""
+
+#: .././archive.php:16 .././page-archive.php:16
+msgid "All entries in "
+msgstr ""
+
+#: .././archive.php:32 .././index.php:39 .././page-archive.php:32
+#: .././page-contact.php:29 .././page.php:24 .././page.php:42
+#: .././search.php:26 .././single.php:24 .././single.php:42
+msgid ", "
+msgstr ""
+
+#: .././archive.php:34 .././page-archive.php:34 .././search.php:28
+#, php-format
+msgid "<span class=\"no-case\">Filed under</span> %s"
+msgstr ""
+
+#: .././archive.php:41 .././page-archive.php:41 .././page.php:33
+#: .././search.php:35 .././single.php:33
+#, php-format
+msgid "%2$s %3$s"
+msgstr ""
+
+#: .././archive.php:53 .././index.php:58 .././page-archive.php:53
+#: .././search.php:47
+msgid "Read More"
+msgstr ""
+
+#: .././archive.php:63 .././page-archive.php:63 .././search.php:57
+msgid "&lt; Older Entries"
+msgstr ""
+
+#: .././archive.php:64 .././page-archive.php:64 .././search.php:58
+msgid "Newer Entries &gt;"
+msgstr ""
+
+#: .././archive.php:82 .././index.php:80 .././page-archive.php:82
+#: .././page-contact.php:45 .././page-sitemap.php:37 .././page.php:64
+#: .././search.php:76 .././single.php:64
+msgid "No posts were found. Sorry!"
+msgstr ""
+
+#: .././comments.php:14
+msgid "Comments"
+msgstr ""
+
+#: .././comments.php:27
+msgid "Comment navigation"
+msgstr ""
+
+#: .././comments.php:28
+msgid "&larr; Older Comments"
+msgstr ""
+
+#: .././comments.php:29
+msgid "Newer Comments &rarr;"
+msgstr ""
+
+#: .././comments.php:38
+msgid "Comments are closed."
+msgstr ""
+
+#: .././comments.php:50
+msgid "Leave a Comment"
+msgstr ""
+
+#: .././comments.php:51
+#, php-format
+msgid "Leave a Reply to %s"
+msgstr ""
+
+#: .././comments.php:52
+msgid "Cancel Reply"
+msgstr ""
+
+#: .././comments.php:53
+msgid "Post Comment"
+msgstr ""
+
+#: .././comments.php:56
+msgid "Comment"
+msgstr ""
+
+#: .././comments.php:63
+#, php-format
+msgid "You must be <a href=\"%s\">logged in</a> to post a comment."
+msgstr ""
+
+#: .././comments.php:68
+#, php-format
+msgid ""
+"Logged in as <a href=\"%1$s\">%2$s</a>. <a href=\"%3$s\" title=\"Log out of "
+"this account\">Log out?</a>"
+msgstr ""
+
+#: .././comments.php:78
+msgid "Name"
+msgstr ""
+
+#: .././comments.php:86
+msgid "Email"
+msgstr ""
+
+#: .././comments.php:94
+msgid "Website"
+msgstr ""
+
+#: .././functions.php:167
+msgid "Primary Navigation"
+msgstr ""
+
+#: .././functions.php:168
+msgid "Secondary Navigation"
+msgstr ""
+
+#: .././functions.php:175
+msgid "Primary Sidebar"
+msgstr ""
+
+#: .././functions.php:177
+msgid "The Primary Widget Area"
+msgstr ""
+
+#: .././functions.php:184
+msgid "Header Widgets"
+msgstr ""
+
+#: .././functions.php:186
+msgid "The Header Widgets Area"
+msgstr ""
+
+#: .././functions.php:403
+msgid "Your comment is awaiting moderation."
+msgstr ""
+
+#: .././functions.php:411
+#, php-format
+msgid "%1$s at %2$s"
+msgstr ""
+
+#: .././functions.php:412
+msgid "(Edit)"
+msgstr ""
+
+#: .././header.php:79 .././header.php:89
+msgid "Phantasmacode"
+msgstr ""
+
+#: .././index.php:41 .././page-contact.php:31 .././page.php:26
+#: .././single.php:26
+#, php-format
+msgid "in %s"
+msgstr ""
+
+#: .././index.php:52
+#, php-format
+msgid "%1$s"
+msgstr ""
+
+#: .././index.php:71
+msgid "ALL POSTS"
+msgstr ""
+
+#: .././page.php:47 .././single.php:47
+#, php-format
+msgid "<span class=\"%1$s\">tagged</span> %2$s"
+msgstr ""
+
+#: .././pages/phc_widget_social_media.php:9
+msgid "Display Social Media"
+msgstr ""
+
+#: .././pages/phc_widget_social_media.php:11
+msgid "PHC Marianiac Widget Social Media"
+msgstr ""
+
+#: .././pages/theme-options.php:5
+msgid "Theme Options"
+msgstr ""
+
+#: .././pages/theme-options.php:60
+msgid "General"
+msgstr ""
+
+#: .././pages/theme-options.php:61
+msgid "Contact"
+msgstr ""
+
+#: .././pages/theme-options.php:62
+msgid "Social Media"
+msgstr ""
+
+#: .././pages/theme-options.php:63
+msgid "Slider"
+msgstr ""
+
+#: .././pages/theme-options.php:64
+msgid "Google Analytics"
+msgstr ""
+
+#: .././pages/theme-options.php:77
+msgid "No Image"
+msgstr ""
+
+#: .././pages/theme-options.php:85
+msgid "Select Image"
+msgstr ""
+
+#: .././pages/theme-options.php:93
+msgid "Phone Number"
+msgstr ""
+
+#: .././pages/theme-options.php:102
+msgid "Email Address"
+msgstr ""
+
+#: .././pages/theme-options.php:115
+msgid "RSS"
+msgstr ""
+
+#: .././pages/theme-options.php:126 .././pages/theme-options.php:145
+#: .././pages/theme-options.php:164 .././pages/theme-options.php:183
+#: .././pages/theme-options.php:202
+msgid "Show"
+msgstr ""
+
+#: .././pages/theme-options.php:132
+msgid "Facebook"
+msgstr ""
+
+#: .././pages/theme-options.php:151
+msgid "Twitter"
+msgstr ""
+
+#: .././pages/theme-options.php:170
+msgid "Google Plus"
+msgstr ""
+
+#: .././pages/theme-options.php:189
+msgid "Linkedin"
+msgstr ""
+
+#: .././pages/theme-options.php:212
+msgid "Select Slider"
+msgstr ""
+
+#: .././pages/theme-options.php:237
+msgid "Google Analytics Code"
+msgstr ""
+
+#: .././pages/theme-options.php:248
+msgid "Save"
+msgstr ""
+
+#: .././search.php:10
+#, php-format
+msgid "Search Results for: %s"
+msgstr ""
+
+#: .././searchform.php:2
+msgid "Search.."
+msgstr ""
