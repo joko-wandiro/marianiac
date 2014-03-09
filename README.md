@@ -12,7 +12,7 @@ How to Install it to your Wordpress Site:
 Features:
 * Of Course it's easy to use.
 * Responsive Theme using Bootstrap 2.3.2.
-* Translation available ( welcome for contributor ).
+* support WPML, Translation available ( welcome for contributor ).
 * Theme Options Page to manage theme.
 * Complete Documentation Page.
 
