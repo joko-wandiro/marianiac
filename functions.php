@@ -66,6 +66,10 @@ function theme_enqueue_scripts_404() {
 	if( is_404() ){
 		wp_enqueue_style('page_not_found_css', PHANTASMACODE_MARIANIAC_THEME_CSS_PATH.'page-not-found.css', FALSE);
 	}
+
+	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ){
+		wp_enqueue_script( 'comment-reply' );
+	}
 }
 
 function query_post_for_homepage( $query ) {
@@ -161,6 +165,7 @@ function phantasmacode_theme_excerpt_more($more) {
 	return '...';
 }
 
+add_theme_support( 'automatic-feed-links' );
 add_theme_support('nav-menus');
 // Register Nav Menus
 if( function_exists('register_nav_menus') ){
