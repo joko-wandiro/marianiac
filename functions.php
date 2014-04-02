@@ -1,66 +1,16 @@
 <?php
-define('PHANTASMACODE_MARIANIAC_THEME_TEMP_URL', get_bloginfo('template_url') . "/");
-define('PHANTASMACODE_MARIANIAC_THEME_TEMPPATH', get_bloginfo('stylesheet_directory'));
+define('PHANTASMACODE_MARIANIAC_THEME_TEMP_URL', get_template_directory_uri() . "/");
+define('PHANTASMACODE_MARIANIAC_THEME_TEMP_PATH', get_template_directory());
 define('PHANTASMACODE_MARIANIAC_THEME_JS_PATH', PHANTASMACODE_MARIANIAC_THEME_TEMP_URL . "/js/");
 define('PHANTASMACODE_MARIANIAC_THEME_CSS_PATH', PHANTASMACODE_MARIANIAC_THEME_TEMP_URL . "/css/");
-define('PHANTASMACODE_MARIANIAC_THEME_IMAGES', PHANTASMACODE_MARIANIAC_THEME_TEMPPATH . "/images/");
-define('PHANTASMACODE_MARIANIAC_THEME_IMAGES_FLAT_SOCIAL_MEDIA_ICONS', PHANTASMACODE_MARIANIAC_THEME_TEMPPATH . "/images/flat_social_media_icons/");
+define('PHANTASMACODE_MARIANIAC_THEME_IMAGES', PHANTASMACODE_MARIANIAC_THEME_TEMP_URL . "/images/");
+define('PHANTASMACODE_MARIANIAC_THEME_IMAGES_FLAT_SOCIAL_MEDIA_ICONS', PHANTASMACODE_MARIANIAC_THEME_TEMP_URL . "/images/flat_social_media_icons/");
 define('PHANTASMACODE_MARIANIAC_THEME_IMAGES_BANNER', PHANTASMACODE_MARIANIAC_THEME_IMAGES . "banner/");
 define('PHANTASMACODE_MARIANIAC_THEME', "phantasmacode-marianiac-theme");
 define('PHANTASMACODE_MARIANIAC_THEME_IDENTIFIER', "marianiac");
 
-/*// Start Sample Hooks Action and Filter for Camera Jquery Plugin 
-add_action("phc_camera_load_scripts_and_styles", "custom_phc_camera_load_scripts_and_styles");
-function custom_phc_camera_load_scripts_and_styles(){
-//	echo "custom_phc_camera_load_scripts_and_styles";
-}
-
-add_action("phc_camera_widget_load_scripts_and_styles", "custom_phc_camera_widget_load_scripts_and_styles");
-function custom_phc_camera_widget_load_scripts_and_styles(){
-	wp_enqueue_style('style_css', PHANTASMACODE_MARIANIAC_THEME_TEMP_URL.'camera_new_skin.css', FALSE);
-}
-
-add_action("phc_camera_before_init", "custom_phc_camera_before_init");
-function custom_phc_camera_before_init(){
-	echo "<p>custom_phc_camera_before_init</p>";
-}
-
-add_action("phc_camera_after_init", "custom_phc_camera_after_init");
-function custom_phc_camera_after_init(){
-	echo "<p>custom_phc_camera_after_init</p>";
-}
-
-add_filter("phc_camera_properties", "custom_phc_camera_properties", 10, 3);
-function custom_phc_camera_properties($camera_properties, $post, $type){
-	if( $type == "widget" ){
-		$camera_properties['thumbnails']= 'false';
-	}
-	return $camera_properties;
-}
-// End Sample Hooks Action and Filter for Camera Jquery Plugin*/
-
-//add_action('wp', 'phantasmacode_insert_article');
-function phantasmacode_insert_article() {
-    global $post;
-	$post_array= $post->to_array();
-	$post_custom= get_post_custom($post_array['ID']);
-	for( $i=2; $i<=25; $i++ ){
-		unset($post_array['ID']);
-		// Insert Sample Data for Article
-//		$post_array['post_title']= "Article Title" . $i;
-//		$post_array['post_content']= "Content Testing Article " . $i;
-		// Insert Sample Data for Stuff
-		$post_array['post_title']= "Article " . $i;
-//		$post_array['post_content']= "Content Article " . $i;
-		$res= wp_insert_post($post_array);
-		foreach( $post_custom as $custom_key=>$custom_value ){
-			add_post_meta($res, $custom_key, $custom_value[0], TRUE);
-		}
-	}
-}
-
-add_action('wp', 'theme_enqueue_scripts_404');
-function theme_enqueue_scripts_404() {
+add_action('wp', 'phc_marianiac_theme_enqueue_scripts_404');
+function phc_marianiac_theme_enqueue_scripts_404() {
 	global $pagenow, $wp_scripts, $wp_query;
 		
 	if( is_404() ){
@@ -72,7 +22,7 @@ function theme_enqueue_scripts_404() {
 	}
 }
 
-function query_post_for_homepage( $query ) {
+function phc_marianiac_query_post_for_homepage( $query ) {
 	$archive= get_query_var('archive');
 	
     if ( $query->is_home() ) {
@@ -102,10 +52,10 @@ function query_post_for_homepage( $query ) {
 		return;
     }
 }
-add_action('pre_get_posts', 'query_post_for_homepage');
+add_action('pre_get_posts', 'phc_marianiac_query_post_for_homepage');
 
-add_action("init", "theme_enqueue_scripts");
-function theme_enqueue_scripts(){
+add_action("init", "phc_marianiac_theme_enqueue_scripts");
+function phc_marianiac_theme_enqueue_scripts(){
 	global $pagenow, $wp_scripts;
 	
 	if( ! is_admin() && ! in_array($pagenow, array('wp-login.php', 'wp-register.php')) ){ // FrontEnd Site
@@ -122,15 +72,8 @@ function theme_enqueue_scripts(){
 	}
 }
 
-// Add Support for Featured Images 
-if( function_exists('add_theme_support') ){
-	add_theme_support('post-thumbnails');
-	add_image_size('featured_image', 960, 0);
-	add_image_size('stuff_thumbnail', 220, 220, TRUE);
-}
-
-add_filter('cancel_comment_reply_link', 'custom_cancel_comment_reply_link', 10, 3);
-function custom_cancel_comment_reply_link($arg1, $arg2, $arg3) {
+add_filter('cancel_comment_reply_link', 'phc_marianiac_custom_cancel_comment_reply_link', 10, 3);
+function phc_marianiac_custom_cancel_comment_reply_link($arg1, $arg2, $arg3) {
 	$replytocom= get_query_var('replytocom');
 	if( ! empty($replytocom) ){
 		return '<a rel="nofollow" id="cancel-comment-reply-link" class="btn" href="' . $arg2 . '">Cancel</a>';
@@ -139,8 +82,8 @@ function custom_cancel_comment_reply_link($arg1, $arg2, $arg3) {
 }
 
 // Set Post Per Page
-add_action('pre_get_posts', 'phantasmacode_theme_pre_get_posts', 10, 1);
-function phantasmacode_theme_pre_get_posts($query){
+add_action('pre_get_posts', 'phc_marianiac_pre_get_posts', 10, 1);
+function phc_marianiac_pre_get_posts($query){
 	global $pagename, $post;
     if ( ! is_admin() ){
 		$post_type= isset($query->query['post_type']) ? $query->query['post_type'] : "";
@@ -154,52 +97,20 @@ function phantasmacode_theme_pre_get_posts($query){
 }
 
 // Set Excerpt Length
-add_filter('excerpt_length', 'custom_excerpt_length', 999);
-function custom_excerpt_length( $length ) {
+add_filter('excerpt_length', 'phc_marianiac_custom_excerpt_length', 999);
+function phc_marianiac_custom_excerpt_length( $length ) {
 	return 25;
 }
 
 // Set Excerpt More
-add_filter('excerpt_more', 'phantasmacode_theme_excerpt_more', 10);
-function phantasmacode_theme_excerpt_more($more) {
+add_filter('excerpt_more', 'phc_marianiac_excerpt_more', 10);
+function phc_marianiac_excerpt_more($more) {
 	return '...';
 }
 
-add_theme_support( 'automatic-feed-links' );
-add_theme_support('nav-menus');
-// Register Nav Menus
-if( function_exists('register_nav_menus') ){
-	register_nav_menus(array(
-	'primary'=>__('Primary Navigation', PHANTASMACODE_MARIANIAC_THEME),
-	'secondary'=>__('Secondary Navigation', PHANTASMACODE_MARIANIAC_THEME),
-	));
-}
-
-// Register Sidebar
-if( function_exists('register_sidebar') ){
-	register_sidebar(array(
-		'name'=>__('Primary Sidebar', PHANTASMACODE_MARIANIAC_THEME),
-		'id'=>'primary-widget-area',
-		'description'=>__('The Primary Widget Area', PHANTASMACODE_MARIANIAC_THEME),
-		'before_widget'=>'<div class="widget">',
-		'after_widget'=>'</div>',
-		'before_title'=>'<h3 class="title-widget">',
-		'after_title'=>'</h3>'
-	));
-	register_sidebar(array(
-		'name'=>__('Header Widgets', PHANTASMACODE_MARIANIAC_THEME),
-		'id'=>'header-widgets-area',
-		'description'=>__('The Header Widgets Area', PHANTASMACODE_MARIANIAC_THEME),
-		'before_widget'=>'<div class="widget header-widgets">',
-		'after_widget'=>'</div>',
-		'before_title'=>'<h3 class="title-widget">',
-		'after_title'=>'</h3>'
-	));
-}
-		
 // Start Override Menu
-add_filter( 'wp_nav_menu_objects', 'add_menu_parent_class' );
-function add_menu_parent_class($items){
+add_filter( 'wp_nav_menu_objects', 'phc_marianiac_add_menu_parent_class' );
+function phc_marianiac_add_menu_parent_class($items){
 	$parents = array();
 	foreach ( $items as $item ) {
 		if ( $item->menu_item_parent && $item->menu_item_parent > 0 ) {
@@ -217,7 +128,7 @@ function add_menu_parent_class($items){
 	return $items;
 }
 
-class Bootstrap_Walker_Nav_Menu extends Walker_Nav_Menu {
+class PHC_Marianiac_Bootstrap_Walker_Nav_Menu extends Walker_Nav_Menu {
 	// add classes to ul sub-menus
 	function start_lvl( &$output, $depth ) {
 		// depth dependent classes
@@ -266,7 +177,7 @@ class Bootstrap_Walker_Nav_Menu extends Walker_Nav_Menu {
 	}
 }
 
-class SiteMap_Footer_Nav_Menu extends Walker_Nav_Menu {
+class PHC_Marianiac_SiteMap_Footer_Nav_Menu extends Walker_Nav_Menu {
 	
 	function end_el( &$output, $item, $depth = 0, $args = array() ) {
 		if( $item->hasChild ){
@@ -341,7 +252,7 @@ class SiteMap_Footer_Nav_Menu extends Walker_Nav_Menu {
 // End Override Menu
 
 // Pagination Bootstrap - Support structure Bootstrap
-function bootstrap_pagination($pagination=array()){
+function phc_marianiac_bootstrap_pagination($pagination=array()){
 	if( !empty($pagination) ){
 ?>
 	<div class="pagination">
@@ -380,7 +291,7 @@ function bootstrap_pagination($pagination=array()){
 	}
 }
 
-function phantasmacode_comment($comment, $args, $depth) {
+function phc_marianiac_phantasmacode_comment($comment, $args, $depth) {
 		$GLOBALS['comment'] = $comment;
 		extract($args, EXTR_SKIP);
 
@@ -432,7 +343,7 @@ function phantasmacode_comment($comment, $args, $depth) {
 <?php
         }
 		
-function bootstrap_archive_news_pagination($pagination=array()){
+function phc_marianiac_bootstrap_archive_news_pagination($pagination=array()){
 	if( !empty($pagination) ){
 ?>
 	<div class="pagination">
@@ -459,29 +370,9 @@ function bootstrap_archive_news_pagination($pagination=array()){
 	}
 }
 
-// Filter the "Thank you" text displayed in the admin footer.
-add_filter( 'admin_footer_text', 'wpse_edit_text', 11 );
-function wpse_edit_text($content) {
-    return "Developed by <a href='http://www.phantasmacode.com/'>www.phantasmacode.com</a>";
-}
-
-// MultiPostThumbnails
-if (class_exists('MultiPostThumbnails')) {
-	new MultiPostThumbnails(
-		array(
-			'label'=>'Stuff Archive Image',
-			'id'=>'stuff-archive-image',
-			'post_type'=>'stuff'
-    	)
-	);
-}
-
-// Support Shortcode on Widget Text
-add_filter('widget_text', 'do_shortcode');
-
 //WP_Widget_Recent_Posts
-add_action('init', 'phantasmacode_rewrite');
-function phantasmacode_rewrite() {
+add_action('init', 'phc_marianiac_rewrite');
+function phc_marianiac_rewrite() {
     global $wp_rewrite;
     $wp_rewrite->flush_rules();
 }
@@ -497,33 +388,29 @@ function buffer_output($function_name=""){
 }
 
 // Add Bootstrap Class into Form
-add_filter( 'wpcf7_form_class_attr', 'wpcf7_form_class_attr' );
-function wpcf7_form_class_attr($class){
+add_filter( 'wpcf7_form_class_attr', 'phc_marianiac_wpcf7_form_class_attr' );
+function phc_marianiac_wpcf7_form_class_attr($class){
 	return $class . " form-horizontal";
 }
 
-if (function_exists('camera_main_ss_add')) {
-	add_action('admin_init','camera_main_ss_add');
-}
-
 // Add Extra Query Vars
-add_filter('query_vars', 'add_extra_vars');
-function add_extra_vars($public_query_vars) {
+add_filter('query_vars', 'phc_marianiac_add_extra_vars');
+function phc_marianiac_add_extra_vars($public_query_vars) {
 	$public_query_vars[] = 'replytocom';
 	$public_query_vars[] = 'archive';
 	return $public_query_vars;
 }
 
 // Add Rewrite Rules Extra
-add_action('init', 'wp_rewrite_extra');
-function wp_rewrite_extra() {
+add_action('init', 'phc_marianiac_wp_rewrite_extra');
+function phc_marianiac_wp_rewrite_extra() {
     global $wp_rewrite;
     add_rewrite_rule('archive/([0-9]+)/?$', 'index.php?archive=1&paged=$matches[1]', 'top');
     $wp_rewrite->flush_rules(); // !!!
 }
 
-add_filter( 'locale', 'marianiac_theme_localized' );
-function marianiac_theme_localized( $locale )
+add_filter( 'locale', 'phc_marianiac_localized' );
+function phc_marianiac_localized( $locale )
 {
 	if ( isset( $_GET['lang'] ) )
 	{
@@ -534,12 +421,60 @@ function marianiac_theme_localized( $locale )
 	return $locale;
 }
 
-add_action('after_setup_theme', 'marianiac_setup');
-function marianiac_setup(){
+add_action('after_setup_theme', 'phc_marianiac_setup');
+function phc_marianiac_setup(){
 	load_theme_textdomain(PHANTASMACODE_MARIANIAC_THEME, 
 	get_template_directory() . '/languages');
+	
+	// Add Support for Featured Images 
+	add_theme_support('post-thumbnails');
+	add_image_size('featured_image', 960, 0);
+	add_image_size('stuff_thumbnail', 220, 220, TRUE);
+	
+	add_theme_support( 'automatic-feed-links' );
+	add_theme_support('nav-menus');
+	// Register Nav Menus
+	if( function_exists('register_nav_menus') ){
+		register_nav_menus(array(
+		'primary'=>__('Primary Navigation', PHANTASMACODE_MARIANIAC_THEME),
+		'secondary'=>__('Secondary Navigation', PHANTASMACODE_MARIANIAC_THEME),
+		));
+	}
 }
 
+function phc_marianiac_widgets_init(){
+	// Register Sidebar
+	if( function_exists('register_sidebar') ){
+		register_sidebar(array(
+			'name'=>__('Primary Sidebar', PHANTASMACODE_MARIANIAC_THEME),
+			'id'=>'primary-widget-area',
+			'description'=>__('The Primary Widget Area', PHANTASMACODE_MARIANIAC_THEME),
+			'before_widget'=>'<div class="widget">',
+			'after_widget'=>'</div>',
+			'before_title'=>'<h3 class="title-widget">',
+			'after_title'=>'</h3>'
+		));
+		register_sidebar(array(
+			'name'=>__('Header Widgets', PHANTASMACODE_MARIANIAC_THEME),
+			'id'=>'header-widgets-area',
+			'description'=>__('The Header Widgets Area', PHANTASMACODE_MARIANIAC_THEME),
+			'before_widget'=>'<div class="widget header-widgets">',
+			'after_widget'=>'</div>',
+			'before_title'=>'<h3 class="title-widget">',
+			'after_title'=>'</h3>'
+		));
+	}
+}
+add_action( 'widgets_init', 'phc_marianiac_widgets_init' );
+
+function phc_marianiac_body_class( $classes ) {
+	if ( ! is_multi_author() )
+		$classes[] = 'single-author';
+
+	return $classes;
+}
+add_filter( 'body_class', 'phc_marianiac_body_class' );
+
 require_once('pages/theme-options.php');
-require_once('pages/phc_widget_social_media.php');
+require_once('pages/phc-widget-social-media.php');
 ?>

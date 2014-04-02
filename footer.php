@@ -5,8 +5,8 @@
 <div class="container" id="footer">
 	<div class="row-fluid">
 		<div class="span12">
-		<?php wp_nav_menu(array('theme_location' => 'Primary Navigation', 'menu'=>'SiteMap', 'container' => '', 
-		'menu_id'=>'sitemap-footer-menu', 'menu_class'=>'nav', 'walker'=>new SiteMap_Footer_Nav_Menu, 
+		<?php wp_nav_menu(array('menu'=>'SiteMap', 'container' => '', 
+		'menu_id'=>'sitemap-footer-menu', 'menu_class'=>'nav', 'walker'=>new PHC_Marianiac_SiteMap_Footer_Nav_Menu, 
 		'items_wrap' => '<div  id="%1$s" class="%2$s row-fluid">%3$s</div>')); ?>
 		</div>
 	</div>
@@ -19,7 +19,7 @@
 <div class="container" id="footer">
 	<div class="row-fluid" id="copyright">
 		<div class="span12">
-		<h3>&copy; 2014 <a href="www.phantasmacode.com">www.phantasmacode.com</a>. 
+		<h3>Marianiac WordPress theme, Copyright (&copy;) 2014 <a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php echo bloginfo("name"); ?></a>. 
 		Powered by <a href="http://wordpress.org/">WordPress</a>.</h3>
 		</div>
 	</div>
